@@ -1,0 +1,8 @@
+.day {
+  display: flex;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: 1px grey solid;
+  margin: -1px -1px 0 0;
+}

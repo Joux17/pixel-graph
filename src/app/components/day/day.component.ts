@@ -10,4 +10,8 @@ import { Component, Input } from '@angular/core';
 export class DayComponent {
 
   @Input() data: string|null = null;
+
+  test() {
+    console.log("clicked");
+  }
 }

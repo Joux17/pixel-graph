@@ -1,10 +1,16 @@
 <h1>Conso !</h1>
 
 <div class="container">
+  <div>
+  @for(jour of daysNumber; track $index) {
+    <div class="daysNumber">{{ $index + 1 }}</div>
+  }
+  </div>
   @for (month of calendar; track $index) {
     <div class="month">
+      <!-- <div class="month-text"><p>{{monthsNames[$index]}}</p></div> -->
     @for (day of month; track $index) {
-    <div class="day">{{ day }}</div>
+    <app-day [data]="day" />
     }
   </div>
   }

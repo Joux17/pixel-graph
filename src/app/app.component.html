@@ -10,7 +10,7 @@
     <div class="month">
       <!-- <div class="month-text"><p>{{monthsNames[$index]}}</p></div> -->
     @for (day of month; track $index) {
-    <app-day [data]="day" />
+    <app-day [color]="day" [colors]="colors"/>
     }
   </div>
   }

@@ -21,8 +21,10 @@ export class AppComponent {
 
   appService = inject(AppService)
 
+  colors: string[] = []
+
   ngOnInit() {
-    this.calendar = this.appService.year
-    this.monthsNames = ["jan","fev","mar","avr","mai","jui","jui","aou","sep","oct","nov","dec"]
+    this.calendar = this.appService.year;
+    this.colors = this.appService.colors;
   }
 }

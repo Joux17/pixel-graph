@@ -23,14 +23,14 @@ export const consommation = {
   }
 }
 
-const NO_CONSOMMATION = ["0"]
-const SMALL_CONSOMMATION = ["1","2"]
-const MEDIUM_CONSOMMATION = ["3","4"]
-const BIG_CONSOMMATION = ["5","6","7"]
-const BLACKOUT = ["8","9","10"]
+const NO_CONSOMMATION = "green"
+const SMALL_CONSOMMATION = "yellow"
+const MEDIUM_CONSOMMATION = "orange"
+const BIG_CONSOMMATION = "red"
+const BLACKOUT = "black"
 
-let janvier = ["0","0","1","0","2","6",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]
-let fevrier = ["5",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]
+let janvier = [NO_CONSOMMATION,NO_CONSOMMATION,SMALL_CONSOMMATION,MEDIUM_CONSOMMATION,BLACKOUT,BIG_CONSOMMATION,NO_CONSOMMATION,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]
+let fevrier = [MEDIUM_CONSOMMATION,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]
 let mars =    [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]
 let avril =   [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]
 let mai =     [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]
@@ -47,4 +47,5 @@ let decembre =[null,null,null,null,null,null,null,null,null,null,null,null,null,
 })
 export class AppService {
   year: (string|null)[][] = [janvier,fevrier,mars,avril,mai,juin,juillet,aout,septembre,octobre,novembre,decembre]
+  colors = [NO_CONSOMMATION, SMALL_CONSOMMATION, MEDIUM_CONSOMMATION, BIG_CONSOMMATION, BLACKOUT]
 }

@@ -1,17 +1,22 @@
+import { NgStyle } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-day',
   standalone: true,
-  imports: [],
+  imports: [NgStyle],
   templateUrl: './day.component.html',
   styleUrl: './day.component.css'
 })
 export class DayComponent {
 
-  @Input() data: string|null = null;
+  @Input() color: string|null = null;
 
-  test() {
-    console.log("clicked");
+  @Input() colors: string[] = []
+
+  selectColor() {
+    const max = this.colors.length;
+    this.color = this.colors[Math.floor(Math.random() * max)];
+
   }
 }

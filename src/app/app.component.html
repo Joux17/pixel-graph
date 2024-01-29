@@ -8,7 +8,7 @@
   </div>
   @for (month of calendar; let indexMois = $index; track indexMois) {
     <div class="month">
-      <!-- <div class="month-text"><p>{{monthsNames[$index]}}</p></div> -->
+      <div class="month-text">{{monthsLetter[indexMois]}}</div>
     @for (day of month; ; let indexDay = $index; track indexDay) {
     <app-day [color]="day" [colors]="colors" (selectedColorEvent)="save(indexMois, indexDay, $event)"/>
     }

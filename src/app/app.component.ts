@@ -18,6 +18,7 @@ export class AppComponent {
   calendar: (string|null)[][] = [];
 
   daysNumber = Array(31);
+  monthsLetter: string[] = ['J','F','M','A','M','J','J','A','S','O','N','D'];
 
   appService = inject(AppService)
 

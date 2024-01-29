@@ -1,5 +1,5 @@
 import { NgStyle } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-day',
@@ -14,9 +14,11 @@ export class DayComponent {
 
   @Input() colors: string[] = []
 
+  @Output() selectedColorEvent = new EventEmitter<string>();
+
   selectColor() {
     const max = this.colors.length;
     this.color = this.colors[Math.floor(Math.random() * max)];
-
+    this.selectedColorEvent.emit(this.color);
   }
 }

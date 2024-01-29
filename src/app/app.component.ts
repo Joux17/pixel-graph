@@ -27,4 +27,9 @@ export class AppComponent {
     this.calendar = this.appService.year;
     this.colors = this.appService.colors;
   }
+
+  save(indexMois: number,  indexDay: number, color: string) {
+    console.log(`${indexMois}, ${indexDay} :  ${color}`);
+    this.calendar[indexMois][indexDay] = color;
+  }
 }

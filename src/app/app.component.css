@@ -1,3 +1,12 @@
+:root {
+  --box-size: 20px;
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .container {
   display: flex;
   flex-direction: row;
@@ -8,9 +17,13 @@
     padding: 0 40px;
   }
 
-  .daysNumber {
-    width: 20px;
-    height: 20px;
+  .days {
+    padding-top: var(--box-size);
+  }
+
+  .dayNumber {
+    width: var(--box-size);
+    height: var(--box-size);
     border: 1px white solid;
     margin: -1px -1px 0 0;
   }
@@ -18,15 +31,12 @@
   .month {
     display: flex;
     flex-direction: column;
-    width: 20px;
+    width: var(--box-size);
 
     .month-text {
       display: flex;
-      position: absolute;
-      width: 20px;
+      width: var(--box-size);
       justify-content: center;
-      word-break: break-all;
-      top: 50px;
 
       > p {
         width: 5px;

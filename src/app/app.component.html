@@ -1,10 +1,10 @@
-<h1>Conso !</h1>
+<h1>Pixel Chart !</h1>
 
 <div class="container">
   <div class="left">
-    <div>
+    <div class="days">
     @for(jour of daysNumber; track $index) {
-      <div class="daysNumber">{{ $index + 1 }}</div>
+      <div class="dayNumber">{{ $index + 1 }}</div>
     }
     </div>
     @for (month of calendar; let indexMois = $index; track indexMois) {

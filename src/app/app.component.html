@@ -1,19 +1,24 @@
 <h1>Conso !</h1>
 
 <div class="container">
-  <div>
-  @for(jour of daysNumber; track $index) {
-    <div class="daysNumber">{{ $index + 1 }}</div>
-  }
-  </div>
-  @for (month of calendar; let indexMois = $index; track indexMois) {
-    <div class="month">
-      <div class="month-text">{{monthsLetter[indexMois]}}</div>
-    @for (day of month; ; let indexDay = $index; track indexDay) {
-    <app-day [color]="day" [colors]="colors" (selectedColorEvent)="save(indexMois, indexDay, $event)"/>
+  <div class="left">
+    <div>
+    @for(jour of daysNumber; track $index) {
+      <div class="daysNumber">{{ $index + 1 }}</div>
+    }
+    </div>
+    @for (month of calendar; let indexMois = $index; track indexMois) {
+      <div class="month">
+        <div class="month-text">{{monthsLetter[indexMois]}}</div>
+      @for (day of month; ; let indexDay = $index; track indexDay) {
+      <app-day [color]="day" [colors]="colors" (selectedColorEvent)="save(indexMois, indexDay, $event)"/>
+      }
+    </div>
     }
   </div>
-  }
+  <div class="right">
+    <h1>Légende</h1>
+  </div>
 </div>
 
 <router-outlet />

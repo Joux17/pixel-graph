@@ -3,6 +3,11 @@
   flex-direction: row;
   justify-content: center;
 
+  .left, right {
+    display: flex;
+    padding: 0 40px;
+  }
+
   .daysNumber {
     width: 20px;
     height: 20px;

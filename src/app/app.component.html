@@ -18,6 +18,14 @@
   </div>
   <div class="right">
     <h1>Légende</h1>
+    <div>
+      @for(quantite of quantites; track quantite){
+        <div class="legend">
+          <p class="square" [ngStyle]="{'background-color': quantite.color}" ></p>
+          {{quantite.label}}
+        </div>
+      }
+    </div>
   </div>
 </div>
 

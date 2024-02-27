@@ -14,7 +14,7 @@ export const consommation = {
     "range": ["3","4"]
   },
   "BIG_CONSOMMATION": {
-    "color": "orangrede",
+    "color": "red",
     "range": ["3","4"]
   },
   "BLACKOUT": {

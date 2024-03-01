@@ -29,18 +29,18 @@ const MEDIUM_CONSOMMATION = "orange"
 const BIG_CONSOMMATION = "red"
 const BLACKOUT = "black"
 
-let janvier = [NO_CONSOMMATION, NO_CONSOMMATION, SMALL_CONSOMMATION, MEDIUM_CONSOMMATION, BLACKOUT, BIG_CONSOMMATION, NO_CONSOMMATION, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
-let fevrier = [MEDIUM_CONSOMMATION, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
-let mars = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
-let avril = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
-let mai = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
-let juin = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
-let juillet = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
-let aout = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
-let septembre = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
-let octobre = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
-let novembre = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
-let decembre = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
+let janvier = new Array(31);
+let fevrier = new Array(29);
+let mars = new Array(31);
+let avril = new Array(30);
+let mai = new Array(31);
+let juin = new Array(30);
+let juillet = new Array(31);
+let aout = new Array(31);
+let septembre = new Array(30);
+let octobre = new Array(31);
+let novembre = new Array(30);
+let decembre = new Array(31);
 
 @Injectable({
   providedIn: 'root',

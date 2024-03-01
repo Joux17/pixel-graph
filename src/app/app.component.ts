@@ -34,12 +34,14 @@ export class AppComponent {
   colors: string[] = []
 
   ngOnInit() {
-    this.calendar = this.appService.year;
+    this.calendar = this.appService.getCalendar();
     this.colors = this.appService.colors;
   }
 
   save(indexMois: number,  indexDay: number, color: string) {
     console.log(`${indexMois}, ${indexDay} :  ${color}`);
     this.calendar[indexMois][indexDay] = color;
+
+    this.appService.persist(this.calendar);
   }
 }

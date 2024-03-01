@@ -23,7 +23,7 @@ export const consommation = {
   }
 }
 
-const NO_CONSOMMATION = "green"
+const NO_CONSOMMATION = "white"
 const SMALL_CONSOMMATION = "yellow"
 const MEDIUM_CONSOMMATION = "orange"
 const BIG_CONSOMMATION = "red"

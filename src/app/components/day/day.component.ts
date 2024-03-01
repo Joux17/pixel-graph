@@ -16,9 +16,13 @@ export class DayComponent {
 
   @Output() selectedColorEvent = new EventEmitter<string>();
 
+  count: number = 0;
+
   selectColor() {
-    const max = this.colors.length;
-    this.color = this.colors[Math.floor(Math.random() * max)];
+    const max = this.colors.length - 1;
+
+    this.count = this.count < max ? this.count + 1 : 0;
+    this.color = this.colors[this.count];
     this.selectedColorEvent.emit(this.color);
   }
 }

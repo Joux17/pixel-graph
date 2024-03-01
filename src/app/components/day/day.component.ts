@@ -1,5 +1,5 @@
 import { NgStyle } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-day',
@@ -8,21 +8,25 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   templateUrl: './day.component.html',
   styleUrl: './day.component.css'
 })
-export class DayComponent {
+export class DayComponent implements OnInit {
 
-  @Input() color: string|null = null;
+  @Input() color: {color: string, value: number} = { color: "white", value: 0};
 
-  @Input() colors: string[] = []
+  @Input() colors: {color: string, value: number}[] = []
 
   @Output() selectedColorEvent = new EventEmitter<string>();
 
   count: number = 0;
+
+  ngOnInit(): void {
+    this.count = this.color?.value;
+  }
 
   selectColor() {
     const max = this.colors.length - 1;
 
     this.count = this.count < max ? this.count + 1 : 0;
     this.color = this.colors[this.count];
-    this.selectedColorEvent.emit(this.color);
+    this.selectedColorEvent.emit(this.color?.color);
   }
 }

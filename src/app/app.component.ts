@@ -16,7 +16,7 @@ export class AppComponent {
 
   monthsNames: string[] = []
 
-  calendar: (string|null)[][] = [];
+  calendar: (string|null)[][] = [[]];
 
   daysNumber = Array(31);
   monthsLetter: string[] = ['J','F','M','A','M','J','J','A','S','O','N','D'];
@@ -31,11 +31,19 @@ export class AppComponent {
 
   appService = inject(AppService)
 
-  colors: string[] = []
+  colors: {color: string, value: number}[] = []
 
   ngOnInit() {
     this.calendar = this.appService.getCalendar();
     this.colors = this.appService.colors;
+  }
+
+  mapValueToObject(value: number): { color: string, value: number} {
+    return this.colors.find(color => color.value === value)!!;
+  }
+
+  mapColorToObject(color: string): { color: string, value: number} {
+    return this.colors.find(c => c.color === color)!!;
   }
 
   save(indexMois: number,  indexDay: number, color: string) {

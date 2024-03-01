@@ -1,27 +1,37 @@
 import { Injectable } from "@angular/core";
 
-export const consommation = {
-  "NO_CONSOMMATION": {
-    "color": "green",
-    "range": ["0"]
+export const quantites = [
+  {
+      id: "NO_CONSOMMATION",
+      color: "white",
+      value: 0,
+      label: "no alcohol"
   },
-  "SMALL_CONSOMMATION": {
-    "color": "yellow",
-    "range": ["1", "2"]
+  {
+      id: "SMALL_CONSOMMATION",
+      color: "yellow",
+      value: 1,
+      label: "1 glass"
   },
-  "MEDIUM_CONSOMMATION": {
-    "color": "orange",
-    "range": ["3", "4"]
+  {
+      id: "MEDIUM_CONSOMMATION",
+      color: "orange",
+      value: 2,
+      label: "3 glasses"
   },
-  "BIG_CONSOMMATION": {
-    "color": "red",
-    "range": ["3", "4"]
+  {
+      id: "BIG_CONSOMMATION",
+      color: "red",
+      value: 3,
+      label: "5 glasses"
   },
-  "BLACKOUT": {
-    "color": "black",
-    "range": ["8", "9", "10"]
+  {
+      id: "BLACKOUT",
+      color: "black",
+      value: 4,
+      label: "black out"
   }
-}
+]
 
 const NO_CONSOMMATION = "white"
 const SMALL_CONSOMMATION = "yellow"
@@ -47,7 +57,7 @@ let decembre = new Array(31);
 })
 export class AppService {
   year: (string | null)[][] = [janvier, fevrier, mars, avril, mai, juin, juillet, aout, septembre, octobre, novembre, decembre]
-  colors = [NO_CONSOMMATION, SMALL_CONSOMMATION, MEDIUM_CONSOMMATION, BIG_CONSOMMATION, BLACKOUT]
+  colors = quantites;
 
   persist(calendar: (string|null)[][]) {
     localStorage.setItem('calendar', JSON.stringify(calendar));

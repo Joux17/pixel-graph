@@ -11,7 +11,12 @@
       <div class="month">
         <div class="month-text">{{monthsLetter[indexMois]}}</div>
       @for (day of month; ; let indexDay = $index; track indexDay) {
-      <app-day [color]="mapColorToObject(calendar[indexMois][indexDay]!!)" [colors]="colors" (selectedColorEvent)="save(indexMois, indexDay, $event)"/>
+      <app-day 
+        [color]="mapColorToObject(calendar[indexMois][indexDay]!!)" 
+        [colors]="colors" 
+        (selectedColorEvent)="save(indexMois, indexDay, $event)"
+        [border]="getBorder(indexMois, indexDay)"
+        />
       }
     </div>
     }

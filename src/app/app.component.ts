@@ -16,40 +16,61 @@ export class AppComponent {
 
   monthsNames: string[] = []
 
-  calendar: (string|null)[][] = [[]];
+  calendar: (string | null)[][] = [[]];
 
   daysNumber = Array(31);
-  monthsLetter: string[] = ['J','F','M','A','M','J','J','A','S','O','N','D'];
+  monthsLetter: string[] = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'];
 
-  quantites: {color: string, label: string}[] = [
-    {color: 'white', label: 'no alcohol'},
-    {color: 'yellow', label: '1 glass'},
-    {color: 'orange', label: '3 glasses'},
-    {color: 'red', label: '5 glasses'},
-    {color: 'black', label: 'blackout'},
+  quantites: { color: string, label: string }[] = [
+    { color: 'white', label: 'no alcohol' },
+    { color: 'yellow', label: '1 glass' },
+    { color: 'orange', label: '3 glasses' },
+    { color: 'red', label: '5 glasses' },
+    { color: 'black', label: 'blackout' },
   ];
 
   appService = inject(AppService)
 
-  colors: {color: string, value: number}[] = []
+  colors: { color: string, value: number }[] = []
 
   ngOnInit() {
     this.calendar = this.appService.getCalendar();
     this.colors = this.appService.colors;
   }
 
-  mapValueToObject(value: number): { color: string, value: number} {
+  mapValueToObject(value: number): { color: string, value: number } {
     return this.colors.find(color => color.value === value)!!;
   }
 
-  mapColorToObject(color: string): { color: string, value: number} {
+  mapColorToObject(color: string): { color: string, value: number } {
     return this.colors.find(c => c.color === color)!!;
   }
 
-  save(indexMois: number,  indexDay: number, color: string) {
+  save(indexMois: number, indexDay: number, color: string) {
     console.log(`${indexMois}, ${indexDay} :  ${color}`);
     this.calendar[indexMois][indexDay] = color;
 
     this.appService.persist(this.calendar);
+  }
+
+  getBorder(indexMois: number, indexDay: number): ("left" | "right" | "top" | "bottom")[] {
+    let borders: ("left" | "right" | "top" | "bottom")[] = [];
+    if (indexMois === 0) {
+      borders.push('left');
+    }
+
+    if(indexDay === 0) {
+      borders.push('top');
+    }
+
+    if(indexMois === 11) {
+      borders.push('right');
+    }
+
+    if(indexDay === this.calendar[indexMois].length - 1) {
+      borders.push('bottom');
+    }
+    
+    return borders;
   }
 }

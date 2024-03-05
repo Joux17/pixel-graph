@@ -13,7 +13,7 @@
       @for (day of month; let indexDay = $index; track indexDay) {
       <app-day
         [color]="mapColorToObject(calendar[indexMois][indexDay]!!)"
-        [colors]="colors"
+        [selectableColors]="selectableColors"
         [borders]="getBorders(indexMois, indexDay)"
         (selectedColorEvent)="save(indexMois, indexDay, $event)"
         />

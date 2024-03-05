@@ -31,19 +31,19 @@ export class AppComponent {
 
   appService = inject(AppService)
 
-  colors: { color: string, value: number }[] = []
+  selectableColors: ColorObject[] = []
 
   ngOnInit() {
     this.calendar = this.appService.getCalendar();
-    this.colors = this.appService.colors;
+    this.selectableColors = this.appService.colors;
   }
 
-  mapValueToObject(value: number): { color: string, value: number } {
-    return this.colors.find(color => color.value === value)!!;
+  mapValueToObject(value: number): ColorObject {
+    return this.selectableColors.find(color => color.value === value)!!;
   }
 
-  mapColorToObject(color: string): { color: string, value: number } {
-    return this.colors.find(c => c.color === color)!!;
+  mapColorToObject(color: string): ColorObject {
+    return this.selectableColors.find(c => c.color === color)!!;
   }
 
   save(indexMois: number, indexDay: number, color: ColorObject) {

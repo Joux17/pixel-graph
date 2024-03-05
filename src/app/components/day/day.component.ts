@@ -13,7 +13,7 @@ export class DayComponent implements OnInit {
 
   @Input() color: ColorObject = { color: "white", value: 0};
 
-  @Input() colors: ColorObject[] = []
+  @Input() selectableColors: ColorObject[] = []
 
   @Input() borders: Border[] = []
 
@@ -26,10 +26,10 @@ export class DayComponent implements OnInit {
   }
 
   selectColor() {
-    const max = this.colors.length - 1;
+    const max = this.selectableColors.length - 1;
 
     this.count = this.count < max ? this.count + 1 : 0;
-    this.color = this.colors[this.count];
+    this.color = this.selectableColors[this.count];
     this.selectedColorEvent.emit(this.color);
   }
 

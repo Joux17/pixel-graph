@@ -1,6 +1,6 @@
 import { NgStyle } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Border, colorObject } from '../../app.service';
+import { Border, ColorObject } from '../../app.service';
 
 @Component({
   selector: 'app-day',
@@ -11,18 +11,18 @@ import { Border, colorObject } from '../../app.service';
 })
 export class DayComponent implements OnInit {
 
-  @Input() color: colorObject = { color: "white", value: 0};
+  @Input() color: ColorObject = { color: "white", value: 0};
 
-  @Input() colors: colorObject[] = []
+  @Input() colors: ColorObject[] = []
 
   @Input() borders: Border[] = []
 
-  @Output() selectedColorEvent = new EventEmitter<string>();
+  @Output() selectedColorEvent = new EventEmitter<ColorObject>();
 
   count: number = 0;
 
   ngOnInit(): void {
-    this.count = this.color?.value;
+    this.count = this.color?.value ?? 0;
   }
 
   selectColor() {
@@ -30,12 +30,11 @@ export class DayComponent implements OnInit {
 
     this.count = this.count < max ? this.count + 1 : 0;
     this.color = this.colors[this.count];
-    this.selectedColorEvent.emit(this.color?.color);
+    this.selectedColorEvent.emit(this.color);
   }
 
   computeBorderStyle(): string {
-    // let style = `'background-color':${this.color.color};`;
-    let style = "";
+    let style = this.color?.color ? `background-color:${this.color.color};` : "";
     this.borders.forEach(borderSide => {
       style += `border-${borderSide}: 1px solid black;`;
     });

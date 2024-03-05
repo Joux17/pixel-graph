@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 
-export interface colorObject {
+export interface ColorObject {
   color: string,
   value: number
 }

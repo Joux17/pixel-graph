@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { AppService, Border } from './app.service';
+import { AppService, Border, ColorObject } from './app.service';
 import { DayComponent } from './components/day/day.component';
 import { NgStyle } from '@angular/common';
 
@@ -46,9 +46,9 @@ export class AppComponent {
     return this.colors.find(c => c.color === color)!!;
   }
 
-  save(indexMois: number, indexDay: number, color: string) {
+  save(indexMois: number, indexDay: number, color: ColorObject) {
     console.log(`${indexMois}, ${indexDay} :  ${color}`);
-    this.calendar[indexMois][indexDay] = color;
+    this.calendar[indexMois][indexDay] = color?.color;
 
     this.appService.persist(this.calendar);
   }

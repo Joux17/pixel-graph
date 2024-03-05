@@ -14,8 +14,8 @@
       <app-day
         [color]="mapColorToObject(calendar[indexMois][indexDay]!!)"
         [colors]="colors"
-        (selectedColorEvent)="save(indexMois, indexDay, $event)"
         [borders]="getBorders(indexMois, indexDay)"
+        (selectedColorEvent)="save(indexMois, indexDay, $event)"
         />
       }
     </div>

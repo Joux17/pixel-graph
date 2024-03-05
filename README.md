@@ -22,3 +22,7 @@ Le front ne peut/doit pas écrire de fichier.
 - un bouton pour switcher de la vue horizontale à la vue verticale
 - une vue calendrier par mois ?
 - possibilité d'ajouter des onglets pour d'autres suivi ?
+- ajout de base de données
+  - historique des années
+  - vision du graphe sur différents devices
+- authentification

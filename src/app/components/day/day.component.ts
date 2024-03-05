@@ -1,5 +1,6 @@
 import { NgStyle } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Border, colorObject } from '../../app.service';
 
 @Component({
   selector: 'app-day',
@@ -10,11 +11,11 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class DayComponent implements OnInit {
 
-  @Input() color: {color: string, value: number} = { color: "white", value: 0};
+  @Input() color: colorObject = { color: "white", value: 0};
 
-  @Input() colors: {color: string, value: number}[] = []
+  @Input() colors: colorObject[] = []
 
-  @Input() border: ("left"|"right"|"top"|"bottom")[] = []
+  @Input() borders: Border[] = []
 
   @Output() selectedColorEvent = new EventEmitter<string>();
 
@@ -35,8 +36,8 @@ export class DayComponent implements OnInit {
   computeBorderStyle(): string {
     // let style = `'background-color':${this.color.color};`;
     let style = "";
-    this.border.forEach(element => {
-      style += `border-${element}: 1px solid black;`;
+    this.borders.forEach(borderSide => {
+      style += `border-${borderSide}: 1px solid black;`;
     });
 
     return style;

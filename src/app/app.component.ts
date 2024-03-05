@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { AppService } from './app.service';
+import { AppService, Border } from './app.service';
 import { DayComponent } from './components/day/day.component';
 import { NgStyle } from '@angular/common';
 
@@ -53,8 +53,8 @@ export class AppComponent {
     this.appService.persist(this.calendar);
   }
 
-  getBorder(indexMois: number, indexDay: number): ("left" | "right" | "top" | "bottom")[] {
-    let borders: ("left" | "right" | "top" | "bottom")[] = [];
+  getBorders(indexMois: number, indexDay: number): Border[] {
+    let borders: Border[] = [];
 
     const isNextMonthSmaller = indexDay > this.calendar[indexMois + 1]?.length - 1;
     const isPreviousMonthSmaller = indexDay > this.calendar[indexMois - 1]?.length - 1;

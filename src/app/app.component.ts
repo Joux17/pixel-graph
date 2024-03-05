@@ -55,22 +55,31 @@ export class AppComponent {
 
   getBorder(indexMois: number, indexDay: number): ("left" | "right" | "top" | "bottom")[] {
     let borders: ("left" | "right" | "top" | "bottom")[] = [];
-    if (indexMois === 0) {
+
+    const isNextMonthSmaller = indexDay > this.calendar[indexMois + 1]?.length - 1;
+    const isPreviousMonthSmaller = indexDay > this.calendar[indexMois - 1]?.length - 1;
+    const isFirstMonth = indexMois === 0;
+    const isFirstDay = indexDay === 0;
+    const isLastMonth = indexMois === 11;
+    const isLastDay = indexDay === this.calendar[indexMois].length - 1;
+
+    if (isFirstMonth || isPreviousMonthSmaller) {
       borders.push('left');
     }
 
-    if(indexDay === 0) {
+    if(isFirstDay) {
       borders.push('top');
     }
 
-    if(indexMois === 11) {
+    if(isLastMonth || isNextMonthSmaller) {
       borders.push('right');
     }
 
-    if(indexDay === this.calendar[indexMois].length - 1) {
+    // si le dernier jour du mois
+    if(isLastDay) {
       borders.push('bottom');
     }
-    
+
     return borders;
   }
 }

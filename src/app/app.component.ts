@@ -12,7 +12,7 @@ import { NgStyle } from '@angular/common';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'my-project';
+  title = 'pixel-graph';
 
   monthsNames: string[] = []
 

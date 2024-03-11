@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "my-project": {
+    "pixel-graph": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -57,10 +57,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "my-project:build:production"
+              "buildTarget": "pixel-graph:build:production"
             },
             "development": {
-              "buildTarget": "my-project:build:development"
+              "buildTarget": "pixel-graph:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -68,7 +68,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "my-project:build"
+            "buildTarget": "pixel-graph:build"
           }
         },
         "test": {

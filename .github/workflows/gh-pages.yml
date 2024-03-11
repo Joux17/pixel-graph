@@ -28,5 +28,5 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }} # A GitHub Actions runner automatically creates a GITHUB_TOKEN secret to authenticate in your workflow
-        publish_dir: ./dist/pixel-graph
+        publish_dir: ./dist/pixel-graph/browser
         enable_jekyll: true

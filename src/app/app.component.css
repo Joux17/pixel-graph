@@ -24,6 +24,8 @@
     height: var(--box-size);
     border: 1px white solid;
     margin: -1px -1px 0 0;
+    display: flex;
+    justify-content: center;
   }
 
   .month {

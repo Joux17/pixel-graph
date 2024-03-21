@@ -1,0 +1,52 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  .left, right {
+    display: flex;
+    padding: 0 40px;
+  }
+
+  .days {
+    padding-top: var(--box-size);
+  }
+
+  .dayNumber {
+    width: var(--box-size);
+    height: var(--box-size);
+    border: 1px white solid;
+    margin: -1px -1px 0 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .month {
+    display: flex;
+    flex-direction: column;
+    width: var(--box-size);
+
+    .month-text {
+      display: flex;
+      width: var(--box-size);
+      justify-content: center;
+
+      > p {
+        width: 5px;
+        margin: auto;
+      }
+    }
+  }
+
+  .legend {
+    display: flex;
+    align-items: center;
+
+    .square {
+      width: 20px;
+      height: 20px;
+      border: 1px black solid;
+      margin-right: 10px;
+    }
+  }
+}

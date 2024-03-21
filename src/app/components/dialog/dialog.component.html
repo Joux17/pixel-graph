@@ -1,12 +1,11 @@
-<h2 mat-dialog-title>Hi {{data.name}}</h2>
+<h3 mat-dialog-title>Quelle est votre consomation ?</h3>
 <mat-dialog-content>
-  <p>What's your favorite animal?</p>
-  <mat-form-field>
-    <mat-label>Favorite Animal</mat-label>
-    <input matInput [(ngModel)]="data.name">
-  </mat-form-field>
+  @for(color of colors; track $index) {
+
+      <app-box [color]="color.color"></app-box>
+  }
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data.name" cdkFocusInitial>Ok</button>
+  <!-- <button mat-button [mat-dialog-close]="data.value" cdkFocusInitial>Ok</button> -->
 </mat-dialog-actions>

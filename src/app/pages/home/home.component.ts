@@ -1,8 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { AppService, Border, ColorObject } from '../../app.service';
+import { Border, ColorObject } from '../../app.interface';
 import { DayComponent } from '../../components/day/day.component';
 import { NgStyle } from '@angular/common';
+import { AppService } from '../../app.service';
 
 @Component({
   selector: 'app-home',

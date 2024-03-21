@@ -1,6 +1,6 @@
 import { NgStyle } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Border, ColorObject } from '../../app.service';
+import { Border, ColorObject } from '../../app.interface';
 
 @Component({
   selector: 'app-day',

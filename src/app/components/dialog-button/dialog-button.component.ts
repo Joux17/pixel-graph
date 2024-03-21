@@ -1,6 +1,7 @@
 import { MatDialog } from '@angular/material/dialog';
 import { Component, inject } from '@angular/core';
 import { DialogComponent } from '../dialog/dialog.component';
+import { ColorObject } from '../../app.interface';
 
 @Component({
   selector: 'app-dialog-button',
@@ -15,9 +16,17 @@ export class DialogButtonComponent {
 
   name: string = '';
 
+  colors: any[] = [
+    { color: 'white', label: 'no alcohol' },
+    { color: 'yellow', label: '1 glass' },
+    { color: 'orange', label: '3 glasses' },
+    { color: 'red', label: '5 glasses' },
+    { color: 'black', label: 'blackout' },
+  ];
+
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogComponent, {
-      data: {name: "Joux"},
+      data: this.colors,
     });
 
     dialogRef.afterClosed().subscribe(result => {

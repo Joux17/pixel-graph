@@ -1,12 +1,5 @@
 import { Injectable } from "@angular/core";
 
-export interface ColorObject {
-  color: string,
-  value: number
-}
-
-export type Border = "left"|"right"|"top"|"bottom"
-
 export const quantites = [
   {
       id: "NO_CONSOMMATION",

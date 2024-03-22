@@ -1,11 +1,13 @@
 <h3 mat-dialog-title>Quelle est votre consomation ?</h3>
 <mat-dialog-content>
   @for(color of colors; track $index) {
-
-      <app-box [color]="color.color"></app-box>
+  <div class="choice" (click)="selectChoice(color)">
+    <app-box [color]="color.color"></app-box>
+    <p>{{ color.label }}</p>
+  </div>
   }
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button (click)="closeDialog()">No Thanks</button>
   <!-- <button mat-button [mat-dialog-close]="data.value" cdkFocusInitial>Ok</button> -->
 </mat-dialog-actions>

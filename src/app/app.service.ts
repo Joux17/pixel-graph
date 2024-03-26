@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 
 export interface ColorObject {
   color: string,
+  label: string,
   value: number
 }
 

@@ -44,7 +44,9 @@
   }
 
   .legend-container {
-    display: none;
+    @media (width < 480px) {
+      display: none;
+    }
     flex-direction: column;
     padding-left: 25px;
     .legend {
@@ -56,6 +58,10 @@
         height: 20px;
         border: 1px black solid;
         margin-right: 10px;
+      }
+
+      img {
+        height: 30px;
       }
     }
   }

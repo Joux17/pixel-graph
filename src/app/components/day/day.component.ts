@@ -11,7 +11,7 @@ import { Border, ColorObject } from '../../app.service';
 })
 export class DayComponent implements OnInit {
 
-  @Input() color: ColorObject = { color: "white", value: 0};
+  @Input() color: ColorObject = { color: "white", value: 0, label: "no alcohol"};
 
   @Input() selectableColors: ColorObject[] = []
 

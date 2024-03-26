@@ -5,7 +5,7 @@
 			@for(quantite of quantites; track quantite){
 			<div class="legend">
 				<p class="square" [ngStyle]="{ 'background-color': quantite.color }"></p>
-				<img src="assets/l0.jpg" />
+				<img [src]="imagePath(quantite.value)" />
 			</div>
 			}
 		</div>

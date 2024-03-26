@@ -12,6 +12,7 @@ import { NgStyle } from '@angular/common';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+
   monthsNames: string[] = []
 
   calendar: (string | null)[][] = [[]];
@@ -19,12 +20,12 @@ export class HomeComponent {
   daysNumber = Array(31);
   monthsLetter: string[] = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'];
 
-  quantites: { color: string, label: string }[] = [
-    { color: 'white', label: 'no alcohol' },
-    { color: 'yellow', label: '1 glass' },
-    { color: 'orange', label: '3 glasses' },
-    { color: 'red', label: '5 glasses' },
-    { color: 'black', label: 'blackout' },
+  quantites: ColorObject[] = [
+    { color: 'white', label: 'no alcohol', value: 0 },
+    { color: 'yellow', label: '1 glass', value: 1 },
+    { color: 'orange', label: '3 glasses', value: 2 },
+    { color: 'red', label: '5 glasses', value: 3 },
+    { color: 'black', label: 'blackout', value: 4 },
   ];
 
   appService = inject(AppService)
@@ -79,6 +80,10 @@ export class HomeComponent {
     }
 
     return borders;
+  }
+
+  imagePath(value: number): string {
+    return `assets/l${value}.jpg`
   }
 
 }

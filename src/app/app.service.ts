@@ -72,15 +72,15 @@ export class AppService {
   }
 
   persistDay(indiceMois: number, indiceJour: number, value: number): void {
-    let conso: string | null = localStorage.getItem('conso');
-    let test: any = {};
+    let consoAsString: string | null = localStorage.getItem('conso');
+    let conso: { [key: string]: number } = {};
 
-    if(conso) {
-      test = JSON.parse(conso);
+    if(consoAsString) {
+      conso = JSON.parse(consoAsString);
     }
 
-    test[`${indiceMois}:${indiceJour}`] = value;
-    localStorage.setItem('conso', JSON.stringify(test));
+    conso[`${indiceMois}:${indiceJour}`] = value;
+    localStorage.setItem('conso', JSON.stringify(conso));
 
   }
 

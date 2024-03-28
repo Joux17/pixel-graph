@@ -71,6 +71,19 @@ export class AppService {
     localStorage.setItem('calendar', JSON.stringify(calendar));
   }
 
+  persistDay(indiceMois: number, indiceJour: number, value: number): void {
+    let conso: string | null = localStorage.getItem('conso');
+    let test: any = {};
+
+    if(conso) {
+      test = JSON.parse(conso);
+    }
+
+    test[`${indiceMois}:${indiceJour}`] = value;
+    localStorage.setItem('conso', JSON.stringify(test));
+
+  }
+
   getCalendar(): (string|null)[][] {
     let calendar = localStorage.getItem('calendar');
 

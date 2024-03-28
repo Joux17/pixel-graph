@@ -48,7 +48,7 @@ export class HomeComponent {
   save(indexMois: number, indexDay: number, color: ColorObject) {
     console.log(`${indexMois}, ${indexDay} :  ${color}`);
     this.calendar[indexMois][indexDay] = color?.color;
-
+    this.appService.persistDay(indexMois, indexDay, color.value);
     this.appService.persist(this.calendar);
   }
 

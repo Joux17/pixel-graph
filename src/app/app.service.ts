@@ -93,4 +93,14 @@ export class AppService {
       return JSON.parse(calendar);
     }
   }
+
+  getConso(): (string|null)[][] {
+    let calendar = localStorage.getItem('conso');
+
+    if (calendar == null) {
+      return this.year;
+    } else {
+      return JSON.parse(calendar);
+    }
+  }
 }

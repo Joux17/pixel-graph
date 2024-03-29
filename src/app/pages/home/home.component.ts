@@ -15,7 +15,7 @@ export class HomeComponent {
 
   monthsNames: string[] = []
 
-  calendar: (string | null)[][] = [[]];
+  calendar: (string | null)[][] = [];
 
   daysNumber = Array(31);
   monthsLetter: string[] = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'];
@@ -33,8 +33,33 @@ export class HomeComponent {
   selectableColors: ColorObject[] = []
 
   ngOnInit() {
-    this.calendar = this.appService.getCalendar();
+
+
+    const year = this.appService.year;
+
+    for (let indexMonth = 0; indexMonth < year.length; indexMonth++) {
+      for (let indexDay = 0; indexDay < year[indexMonth].length; indexDay++) {
+        if (!this.calendar[indexMonth]) {
+          this.calendar[indexMonth] = new Array(year[indexMonth].length);
+        }
+        this.calendar[indexMonth][indexDay] = "yellow";
+        this.extractConsoForDay(indexMonth, indexDay);
+      }
+    }
+
     this.selectableColors = this.appService.colors;
+  }
+
+  extractConsoForDay(indexMonth: number, indexDay: number) {
+    const conso = this.appService.getConso();
+
+    const toto: number = Object.keys(conso)
+      .findIndex((key, index) => {
+        if(key === `${indexMonth}:${indexDay}`) {
+          index;
+        }
+      })
+
   }
 
   mapValueToObject(value: number): ColorObject {
@@ -66,16 +91,16 @@ export class HomeComponent {
       borders.push('left');
     }
 
-    if(isFirstDay) {
+    if (isFirstDay) {
       borders.push('top');
     }
 
-    if(isLastMonth || isNextMonthSmaller) {
+    if (isLastMonth || isNextMonthSmaller) {
       borders.push('right');
     }
 
     // si le dernier jour du mois
-    if(isLastDay) {
+    if (isLastDay) {
       borders.push('bottom');
     }
 

@@ -79,7 +79,7 @@ export class AppService {
       conso = JSON.parse(consoAsString);
     }
 
-    conso[`${indiceMois}:${indiceJour}`] = value;
+    conso[`${indiceMois};${indiceJour}`] = value;
     localStorage.setItem('conso', JSON.stringify(conso));
 
   }

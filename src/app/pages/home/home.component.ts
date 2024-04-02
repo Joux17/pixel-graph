@@ -34,7 +34,6 @@ export class HomeComponent {
 
   ngOnInit() {
 
-
     const year = this.appService.year;
 
     for (let indexMonth = 0; indexMonth < year.length; indexMonth++) {
@@ -42,7 +41,7 @@ export class HomeComponent {
         if (!this.calendar[indexMonth]) {
           this.calendar[indexMonth] = new Array(year[indexMonth].length);
         }
-        this.calendar[indexMonth][indexDay] = "yellow";
+        this.calendar[indexMonth][indexDay] = "white";
         this.extractConsoForDay(indexMonth, indexDay);
       }
     }
@@ -55,7 +54,7 @@ export class HomeComponent {
 
     const toto: number = Object.keys(conso)
       .findIndex((key, index) => {
-        if(key === `${indexMonth}:${indexDay}`) {
+        if(key === `${indexMonth};${indexDay}`) {
           index;
         }
       })

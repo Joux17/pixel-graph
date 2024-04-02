@@ -16,6 +16,7 @@ La sauvegarde de l'état du calendrier s'effectuera pour commencer dans le navig
 C'est le plus simple au début sans avoir à passer par un back-end.
 Le front ne peut/doit pas écrire de fichier.
 
+Ensuite, l'ajout de Firebase pour l'authent et la base de données sera effectué.
 
 ## Idées
 

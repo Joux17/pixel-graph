@@ -41,8 +41,6 @@ export class HomeComponent {
         if (!this.calendar[indexMonth]) {
           this.calendar[indexMonth] = new Array(year[indexMonth].length);
         }
-        this.calendar[indexMonth][indexDay] = "white";
-        this.extractConsoForDay(indexMonth, indexDay);
       }
     }
 
@@ -52,13 +50,9 @@ export class HomeComponent {
   extractConsoForDay(indexMonth: number, indexDay: number) {
     const conso = this.appService.getConso();
 
-    const toto: number = Object.keys(conso)
-      .findIndex((key, index) => {
-        if(key === `${indexMonth};${indexDay}`) {
-          index;
-        }
-      })
+    const data = conso[`${indexMonth};${indexDay}`] ?? 0
 
+    return this.mapValueToObject(data);
   }
 
   mapValueToObject(value: number): ColorObject {
@@ -73,7 +67,6 @@ export class HomeComponent {
     console.log(`${indexMois}, ${indexDay} :  ${color}`);
     this.calendar[indexMois][indexDay] = color?.color;
     this.appService.persistDay(indexMois, indexDay, color.value);
-    this.appService.persist(this.calendar);
   }
 
   getBorders(indexMois: number, indexDay: number): Border[] {

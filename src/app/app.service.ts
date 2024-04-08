@@ -67,10 +67,6 @@ export class AppService {
   year: (string | null)[][] = [janvier, fevrier, mars, avril, mai, juin, juillet, aout, septembre, octobre, novembre, decembre]
   colors = quantites;
 
-  persist(calendar: (string|null)[][]) {
-    localStorage.setItem('calendar', JSON.stringify(calendar));
-  }
-
   persistDay(indiceMois: number, indiceJour: number, value: number): void {
     let consoAsString: string | null = localStorage.getItem('conso');
     let conso: { [key: string]: number } = {};
@@ -84,23 +80,13 @@ export class AppService {
 
   }
 
-  getCalendar(): (string|null)[][] {
-    let calendar = localStorage.getItem('calendar');
+  getConso(): any {
+    let conso = localStorage.getItem('conso');
 
-    if (calendar == null) {
+    if (conso == null) {
       return this.year;
     } else {
-      return JSON.parse(calendar);
-    }
-  }
-
-  getConso(): (string|null)[][] {
-    let calendar = localStorage.getItem('conso');
-
-    if (calendar == null) {
-      return this.year;
-    } else {
-      return JSON.parse(calendar);
+      return JSON.parse(conso);
     }
   }
 }

@@ -5,4 +5,8 @@ export interface ColorObject {
 }
 
 // Permet de définir quels côtés d'un jour doit être tracé
-export type BoxBorder = "left"|"right"|"top"|"bottom";
+export type BoxBorder = "left" | "right" | "top" | "bottom";
+
+export interface DayConsommation {
+
+}

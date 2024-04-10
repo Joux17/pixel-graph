@@ -47,7 +47,7 @@ export class HomeComponent {
   }
 
   extractConsoForDay(indexMonth: number, indexDay: number) {
-    const conso = this.appService.getConso();
+    const conso: { [key: string]: any } = this.appService.getConso();
 
     const data = conso[`${indexMonth};${indexDay}`] ?? 0
 

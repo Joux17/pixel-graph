@@ -2,34 +2,34 @@ import { Injectable } from "@angular/core";
 
 export const quantites = [
   {
-      id: "NO_CONSOMMATION",
-      color: "white",
-      value: 0,
-      label: "no alcohol"
+    id: "NO_CONSOMMATION",
+    color: "white",
+    value: 0,
+    label: "no alcohol"
   },
   {
-      id: "SMALL_CONSOMMATION",
-      color: "yellow",
-      value: 1,
-      label: "1 glass"
+    id: "SMALL_CONSOMMATION",
+    color: "yellow",
+    value: 1,
+    label: "1 glass"
   },
   {
-      id: "MEDIUM_CONSOMMATION",
-      color: "orange",
-      value: 2,
-      label: "3 glasses"
+    id: "MEDIUM_CONSOMMATION",
+    color: "orange",
+    value: 2,
+    label: "3 glasses"
   },
   {
-      id: "BIG_CONSOMMATION",
-      color: "red",
-      value: 3,
-      label: "5 glasses"
+    id: "BIG_CONSOMMATION",
+    color: "red",
+    value: 3,
+    label: "5 glasses"
   },
   {
-      id: "BLACKOUT",
-      color: "black",
-      value: 4,
-      label: "black out"
+    id: "BLACKOUT",
+    color: "black",
+    value: 4,
+    label: "black out"
   }
 ]
 
@@ -57,7 +57,7 @@ export class AppService {
     let consoAsString: string | null = localStorage.getItem('conso');
     let conso: { [key: string]: number } = {};
 
-    if(consoAsString) {
+    if (consoAsString) {
       conso = JSON.parse(consoAsString);
     }
 
@@ -66,10 +66,14 @@ export class AppService {
 
   }
 
-  getConso(): any {
-    let conso : string = localStorage.getItem('conso') ?? '';
+  getConso(): { [key: string]: any } {
+    let conso: string | null = localStorage.getItem('conso') ?? null;
 
-    return JSON.parse(conso);
+    if (conso === null) {
+      return {};
+    } else {
+      return JSON.parse(conso);
+    }
 
   }
 }

@@ -1,6 +1,6 @@
 import { NgStyle } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Border, ColorObject } from '../../app.service';
+import { BoxBorder, ColorObject } from '../../app.types';
 
 @Component({
   selector: 'app-day',
@@ -15,7 +15,7 @@ export class DayComponent implements OnInit {
 
   @Input() selectableColors: ColorObject[] = []
 
-  @Input() borders: Border[] = []
+  @Input() borders: BoxBorder[] = []
 
   @Output() selectedColorEvent = new EventEmitter<ColorObject>();
 

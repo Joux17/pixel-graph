@@ -1,13 +1,5 @@
 import { Injectable } from "@angular/core";
 
-export interface ColorObject {
-  color: string,
-  label: string,
-  value: number
-}
-
-export type Border = "left"|"right"|"top"|"bottom"
-
 export const quantites = [
   {
       id: "NO_CONSOMMATION",
@@ -40,12 +32,6 @@ export const quantites = [
       label: "black out"
   }
 ]
-
-const NO_CONSOMMATION = "white"
-const SMALL_CONSOMMATION = "yellow"
-const MEDIUM_CONSOMMATION = "orange"
-const BIG_CONSOMMATION = "red"
-const BLACKOUT = "black"
 
 let janvier = new Array(31);
 let fevrier = new Array(29);
@@ -81,12 +67,9 @@ export class AppService {
   }
 
   getConso(): any {
-    let conso = localStorage.getItem('conso');
+    let conso : string = localStorage.getItem('conso') ?? '';
 
-    if (conso == null) {
-      return this.year;
-    } else {
-      return JSON.parse(conso);
-    }
+    return JSON.parse(conso);
+
   }
 }

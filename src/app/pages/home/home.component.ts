@@ -1,8 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { AppService, Border, ColorObject } from '../../app.service';
+import { AppService } from '../../app.service';
 import { DayComponent } from '../../components/day/day.component';
 import { NgStyle } from '@angular/common';
+import { BoxBorder, ColorObject } from '../../app.types';
 
 @Component({
   selector: 'app-home',
@@ -12,8 +13,6 @@ import { NgStyle } from '@angular/common';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-
-  monthsNames: string[] = []
 
   calendar: (string | null)[][] = [];
 
@@ -69,8 +68,8 @@ export class HomeComponent {
     this.appService.persistDay(indexMois, indexDay, color.value);
   }
 
-  getBorders(indexMois: number, indexDay: number): Border[] {
-    let borders: Border[] = [];
+  getBorders(indexMois: number, indexDay: number): BoxBorder[] {
+    let borders: BoxBorder[] = [];
 
     const isNextMonthSmaller = indexDay > this.calendar[indexMois + 1]?.length - 1;
     const isPreviousMonthSmaller = indexDay > this.calendar[indexMois - 1]?.length - 1;

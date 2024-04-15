@@ -1,54 +1,8 @@
 import { Injectable } from "@angular/core";
-
-export interface ColorObject {
-  color: string,
-  label: string,
-  value: number
-}
-
-export type Border = "left"|"right"|"top"|"bottom"
-
-export const quantites = [
-  {
-      id: "NO_CONSOMMATION",
-      color: "white",
-      value: 0,
-      label: "no alcohol"
-  },
-  {
-      id: "SMALL_CONSOMMATION",
-      color: "yellow",
-      value: 1,
-      label: "1 glass"
-  },
-  {
-      id: "MEDIUM_CONSOMMATION",
-      color: "orange",
-      value: 2,
-      label: "3 glasses"
-  },
-  {
-      id: "BIG_CONSOMMATION",
-      color: "red",
-      value: 3,
-      label: "5 glasses"
-  },
-  {
-      id: "BLACKOUT",
-      color: "black",
-      value: 4,
-      label: "black out"
-  }
-]
-
-const NO_CONSOMMATION = "white"
-const SMALL_CONSOMMATION = "yellow"
-const MEDIUM_CONSOMMATION = "orange"
-const BIG_CONSOMMATION = "red"
-const BLACKOUT = "black"
+import { ColorObject } from "./app.types";
 
 let janvier = new Array(31);
-let fevrier = new Array(29);
+let fevrier = new Array(29); // TODO à variabiliser en fn de l'année consultée
 let mars = new Array(31);
 let avril = new Array(30);
 let mai = new Array(31);
@@ -65,19 +19,43 @@ let decembre = new Array(31);
 })
 export class AppService {
   year: (string | null)[][] = [janvier, fevrier, mars, avril, mai, juin, juillet, aout, septembre, octobre, novembre, decembre]
-  colors = quantites;
 
-  persist(calendar: (string|null)[][]) {
-    localStorage.setItem('calendar', JSON.stringify(calendar));
+  quantites: ColorObject[] = [
+    { color: 'white', label: 'no alcohol', value: 0 },
+    { color: 'yellow', label: '1 glass', value: 1 },
+    { color: 'orange', label: '3 glasses', value: 2 },
+    { color: 'red', label: '5 glasses', value: 3 },
+    { color: 'black', label: 'blackout', value: 4 },
+  ];
+
+  persistDay(indiceMois: number, indiceJour: number, value: number): void {
+    const consoAsString: string | null = localStorage.getItem('conso');
+
+    let conso: { [key: string]: number } = {};
+
+    if (consoAsString) {
+      conso = JSON.parse(consoAsString);
+    }
+
+    // La clé sous laquelle est stockée la valeur de conso est de la forme 0;0
+    conso[`${indiceMois};${indiceJour}`] = value;
+
+    localStorage.setItem('conso', JSON.stringify(conso));
+
   }
 
-  getCalendar(): (string|null)[][] {
-    let calendar = localStorage.getItem('calendar');
+  getConso(): { [key: string]: any } {
+    const conso: string | null = localStorage.getItem('conso') ?? null;
 
-    if (calendar == null) {
-      return this.year;
+    if (conso === null) {
+      return {};
     } else {
-      return JSON.parse(calendar);
+      return JSON.parse(conso);
     }
+
+  }
+
+  estUneAnneeBissextile(year: number) {
+    return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
   }
 }

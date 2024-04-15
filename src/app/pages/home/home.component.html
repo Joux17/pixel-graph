@@ -2,7 +2,7 @@
 	<div class="legend-container">
 		<h1>Légende</h1>
 		<div>
-			@for(quantite of quantites; track quantite){
+			@for(quantite of selectableColors; track quantite){
 			<div class="legend">
 				<p class="square" [ngStyle]="{ 'background-color': quantite.color }"></p>
 				<img [src]="imagePath(quantite.value)" />
@@ -20,7 +20,7 @@
 		<div class="month">
 			<div class="month-text">{{ monthsLetter[indexMois] }}</div>
 			@for (day of month; let indexDay = $index; track indexDay) {
-			<app-day [color]="mapColorToObject(calendar[indexMois][indexDay]!!)" [selectableColors]="selectableColors"
+			<app-day [color]="extractConsoForDay(indexMois,indexDay)" [selectableColors]="selectableColors"
 				[borders]="getBorders(indexMois, indexDay)" (selectedColorEvent)="save(indexMois, indexDay, $event)" />
 			}
 		</div>

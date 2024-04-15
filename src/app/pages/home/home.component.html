@@ -2,7 +2,7 @@
 	<div class="legend-container">
 		<h1>Légende</h1>
 		<div>
-			@for(quantite of quantites; track quantite){
+			@for(quantite of selectableColors; track quantite){
 			<div class="legend">
 				<p class="square" [ngStyle]="{ 'background-color': quantite.color }"></p>
 				<img [src]="imagePath(quantite.value)" />

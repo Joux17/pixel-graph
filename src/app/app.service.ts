@@ -1,37 +1,13 @@
 import { Injectable } from "@angular/core";
+import { ColorObject } from "./app.types";
 
-export const quantites = [
-  {
-    id: "NO_CONSOMMATION",
-    color: "white",
-    value: 0,
-    label: "no alcohol"
-  },
-  {
-    id: "SMALL_CONSOMMATION",
-    color: "yellow",
-    value: 1,
-    label: "1 glass"
-  },
-  {
-    id: "MEDIUM_CONSOMMATION",
-    color: "orange",
-    value: 2,
-    label: "3 glasses"
-  },
-  {
-    id: "BIG_CONSOMMATION",
-    color: "red",
-    value: 3,
-    label: "5 glasses"
-  },
-  {
-    id: "BLACKOUT",
-    color: "black",
-    value: 4,
-    label: "black out"
-  }
-]
+export const quantites: ColorObject[] = [
+  { color: 'white', label: 'no alcohol', value: 0 },
+  { color: 'yellow', label: '1 glass', value: 1 },
+  { color: 'orange', label: '3 glasses', value: 2 },
+  { color: 'red', label: '5 glasses', value: 3 },
+  { color: 'black', label: 'blackout', value: 4 },
+];
 
 let janvier = new Array(31);
 let fevrier = new Array(29);
@@ -51,7 +27,7 @@ let decembre = new Array(31);
 })
 export class AppService {
   year: (string | null)[][] = [janvier, fevrier, mars, avril, mai, juin, juillet, aout, septembre, octobre, novembre, decembre]
-  colors = quantites;
+  quantites = quantites;
 
   persistDay(indiceMois: number, indiceJour: number, value: number): void {
     let consoAsString: string | null = localStorage.getItem('conso');

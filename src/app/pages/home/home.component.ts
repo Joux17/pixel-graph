@@ -19,14 +19,6 @@ export class HomeComponent {
   daysNumber = Array(31);
   monthsLetter: string[] = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'];
 
-  quantites: ColorObject[] = [
-    { color: 'white', label: 'no alcohol', value: 0 },
-    { color: 'yellow', label: '1 glass', value: 1 },
-    { color: 'orange', label: '3 glasses', value: 2 },
-    { color: 'red', label: '5 glasses', value: 3 },
-    { color: 'black', label: 'blackout', value: 4 },
-  ];
-
   appService = inject(AppService)
 
   selectableColors: ColorObject[] = []
@@ -43,7 +35,7 @@ export class HomeComponent {
       }
     }
 
-    this.selectableColors = this.appService.colors;
+    this.selectableColors = this.appService.quantites;
   }
 
   extractConsoForDay(indexMonth: number, indexDay: number) {
@@ -63,7 +55,6 @@ export class HomeComponent {
   }
 
   save(indexMois: number, indexDay: number, color: ColorObject) {
-    console.log(`${indexMois}, ${indexDay} :  ${color}`);
     this.calendar[indexMois][indexDay] = color?.color;
     this.appService.persistDay(indexMois, indexDay, color.value);
   }

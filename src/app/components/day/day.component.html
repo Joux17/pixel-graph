@@ -1,4 +1,7 @@
 <div class="day"
   [style]="computeBorderStyle()"
-	(click)="selectColor()">
+	(click)="selectColor(); showPanel = !showPanel">
+  @if(showPanel) {
+    <app-panel-color [selectableColors]="selectableColors"></app-panel-color>
+  }
 </div>

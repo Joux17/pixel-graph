@@ -1,11 +1,12 @@
 import { NgStyle } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BoxBorder, ColorObject } from '../../app.types';
+import { PanelColorComponent } from '../panel-color/panel-color.component';
 
 @Component({
   selector: 'app-day',
   standalone: true,
-  imports: [NgStyle],
+  imports: [NgStyle, PanelColorComponent],
   templateUrl: './day.component.html',
   styleUrl: './day.component.css'
 })
@@ -20,6 +21,8 @@ export class DayComponent implements OnInit {
   @Output() selectedColorEvent = new EventEmitter<ColorObject>();
 
   count: number = 0;
+
+  showPanel: boolean = false;
 
   ngOnInit(): void {
     this.count = this.color?.value ?? 0;

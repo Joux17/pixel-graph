@@ -1,5 +1,5 @@
 <div class="panel-container">
   @for(color of selectableColors; track color.value; let idx = $index) {
-    <div>{{color.value}}</div>
+  <div class="color-choice" (click)="selectColor(color)" [ngStyle]="{ 'background-color': color.color }"></div>
   }
 </div>

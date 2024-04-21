@@ -1,7 +1,5 @@
-<div class="day"
-  [style]="computeBorderStyle()"
-	(click)="selectColor(); showPanel = !showPanel">
+<div class="day" [style]="computeBorderStyle()" (click)="showPanel = !showPanel">
   @if(showPanel) {
-    <app-panel-color [selectableColors]="selectableColors"></app-panel-color>
+  <app-panel-color [selectableColors]="selectableColors" (selectedColorEvent)="saveColor($event)"></app-panel-color>
   }
 </div>

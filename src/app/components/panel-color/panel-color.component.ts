@@ -19,8 +19,8 @@ export class PanelColorComponent implements OnInit {
 
   }
 
-  selectColor() {
-    this.selectedColorEvent.emit();
+  selectColor(color: ColorObject) {
+    this.selectedColorEvent.emit(color);
   }
 
 

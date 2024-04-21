@@ -12,7 +12,7 @@ import { PanelColorComponent } from '../panel-color/panel-color.component';
 })
 export class DayComponent implements OnInit {
 
-  @Input() color: ColorObject = { color: "white", value: 0, label: "no alcohol"};
+  @Input() color: ColorObject = { color: "white", value: 0, label: "no alcohol" };
 
   @Input() selectableColors: ColorObject[] = []
 
@@ -28,14 +28,6 @@ export class DayComponent implements OnInit {
     this.count = this.color?.value ?? 0;
   }
 
-  selectColor() {
-    const max = this.selectableColors.length - 1;
-
-    this.count = this.count < max ? this.count + 1 : 0;
-    this.color = this.selectableColors[this.count];
-    this.selectedColorEvent.emit(this.color);
-  }
-
   computeBorderStyle(): string {
     let style = this.color?.color ? `background-color:${this.color.color};` : "";
     this.borders.forEach(borderSide => {
@@ -43,5 +35,9 @@ export class DayComponent implements OnInit {
     });
 
     return style;
+  }
+
+  saveColor(color: ColorObject) {
+    this.selectedColorEvent.emit(color);
   }
 }

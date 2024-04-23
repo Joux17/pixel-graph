@@ -11,7 +11,9 @@ import { ColorObject } from '../../app.types';
 })
 export class PanelColorComponent implements OnInit {
 
-  @Input() selectableColors: ColorObject[] = []
+  @Input() selectableColors: ColorObject[] = [];
+
+  @Input() coordinates: {x: number, y: number} = {x: 0, y: 0}
 
   @Output() selectedColorEvent = new EventEmitter<ColorObject>();
 
@@ -23,5 +25,9 @@ export class PanelColorComponent implements OnInit {
     this.selectedColorEvent.emit(color);
   }
 
+  computeStyle() {
+    return `top:${this.coordinates.y}px;
+    left:${this.coordinates.x}px`
+  }
 
 }

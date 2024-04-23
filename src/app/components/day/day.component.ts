@@ -24,6 +24,9 @@ export class DayComponent implements OnInit {
 
   showPanel: boolean = false;
 
+  x: number = 0;
+  y : number = 0;
+
   ngOnInit(): void {
     this.count = this.color?.value ?? 0;
   }
@@ -39,5 +42,18 @@ export class DayComponent implements OnInit {
 
   saveColor(color: ColorObject) {
     this.selectedColorEvent.emit(color);
+  }
+
+  openModal(event: MouseEvent) {
+    this.showPanel = !this.showPanel;
+    this.x = event.pageX
+    this.y = event.pageY
+  }
+
+  getCoordinates() {
+    return {
+      x: this.x,
+      y: this.y,
+    }
   }
 }

@@ -1,7 +1,8 @@
 <div class="dialog-container">
   <div class="colors-container" [style]="computeStyle()">
     @for(color of selectableColors; track color.value; let idx = $index) {
-    <div class="color-choice" (click)="selectColor(color)" [ngStyle]="{ 'background-color': color.color }"></div>
+    <div class="color-choice" (click)="selectColor(color)" [ngStyle]="{ 'background-color': color.color }">
+    </div>
     }
   </div>
 </div>

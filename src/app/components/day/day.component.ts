@@ -1,6 +1,6 @@
 import { NgStyle } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { BoxBorder, ColorObject } from '../../app.types';
+import { BoxBorder, ColorObject, Coordinates } from '../../app.types';
 import { PanelColorComponent } from '../panel-color/panel-color.component';
 
 @Component({
@@ -20,16 +20,12 @@ export class DayComponent implements OnInit {
 
   @Output() selectedColorEvent = new EventEmitter<ColorObject>();
 
-  count: number = 0;
-
   showPanel: boolean = false;
 
   x: number = 0;
-  y : number = 0;
+  y: number = 0;
 
-  ngOnInit(): void {
-    this.count = this.color?.value ?? 0;
-  }
+  ngOnInit(): void {}
 
   computeBorderStyle(): string {
     let style = this.color?.color ? `background-color:${this.color.color};` : "";
@@ -50,7 +46,7 @@ export class DayComponent implements OnInit {
     this.y = event.pageY
   }
 
-  getCoordinates() {
+  getCoordinates(): Coordinates {
     return {
       x: this.x,
       y: this.y,

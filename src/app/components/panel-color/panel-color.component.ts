@@ -1,6 +1,6 @@
 import { NgStyle } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ColorObject } from '../../app.types';
+import { ColorObject, Coordinates } from '../../app.types';
 
 @Component({
   selector: 'app-panel-color',
@@ -13,7 +13,7 @@ export class PanelColorComponent implements OnInit {
 
   @Input() selectableColors: ColorObject[] = [];
 
-  @Input() coordinates: {x: number, y: number} = {x: 0, y: 0}
+  @Input() coordinates: Coordinates = {x: 0, y: 0}
 
   @Output() selectedColorEvent = new EventEmitter<ColorObject>();
 

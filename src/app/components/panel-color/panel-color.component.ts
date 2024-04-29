@@ -1,5 +1,5 @@
 import { NgStyle } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { ColorObject, Coordinates } from '../../app.types';
 
 @Component({
@@ -17,8 +17,9 @@ export class PanelColorComponent implements OnInit {
 
   @Output() selectedColorEvent = new EventEmitter<ColorObject>();
 
-  ngOnInit(): void {
+  elementRef = inject(ElementRef)
 
+  ngOnInit(): void {
   }
 
   selectColor(color: ColorObject) {
@@ -26,8 +27,29 @@ export class PanelColorComponent implements OnInit {
   }
 
   computeStyle() {
-    return `top:${this.coordinates.y}px;
-    left:${this.coordinates.x}px`
+    const windowWidth: number = window.innerWidth;
+    const windowHeight: number = window.innerHeight;
+    const dialogWidth: number = this.valueOf('--dialog-size');
+    const dialogHeight: number = 50;
+
+    let left: number = this.coordinates.x;
+    let top: number = this.coordinates.y;
+
+    // Check if dialog exceeds right edge of the screen
+    if (left + dialogWidth > windowWidth) {
+      left = windowWidth - dialogWidth;
+    }
+
+    // Check if dialog exceeds bottom edge of the screen
+    if (top + dialogHeight > windowHeight) {
+      top = windowHeight - dialogHeight;
+    }
+
+    return `top:${top}px; left:${left}px;`;
+  }
+
+  valueOf(cssVariable: string): number {
+    return parseInt(getComputedStyle(this.elementRef.nativeElement).getPropertyValue(cssVariable));
   }
 
 }

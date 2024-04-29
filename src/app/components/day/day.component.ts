@@ -42,8 +42,8 @@ export class DayComponent implements OnInit {
 
   openModal(event: MouseEvent) {
     this.showPanel = !this.showPanel;
-    this.x = event.pageX
-    this.y = event.pageY
+    this.x = event.x
+    this.y = event.y
   }
 
   getCoordinates(): Coordinates {

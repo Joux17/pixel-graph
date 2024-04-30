@@ -4,5 +4,10 @@ export interface ColorObject {
   value: number
 }
 
-// Permet de définir quels côtés d'un jour doit être tracé
+// Permet de définir quels côtés d'une case doit être tracés
 export type BoxBorder = "left" | "right" | "top" | "bottom";
+
+export interface Coordinates {
+  x: number,
+  y: number
+}

@@ -23,9 +23,10 @@ export class AppService {
   quantites: ColorObject[] = [
     { color: 'white', label: 'no alcohol', value: 0 },
     { color: 'yellow', label: '1 glass', value: 1 },
-    { color: 'orange', label: '3 glasses', value: 2 },
-    { color: 'red', label: '5 glasses', value: 3 },
-    { color: 'black', label: 'blackout', value: 4 },
+    { color: 'orange', label: '2 glasses', value: 2 },
+    { color: 'red', label: '3 glasses', value: 3 },
+    { color: 'brown', label: '5 glasses', value: 4 },
+    { color: 'black', label: 'blackout', value: 5 },
   ];
 
   persistDay(indiceMois: number, indiceJour: number, value: number): void {

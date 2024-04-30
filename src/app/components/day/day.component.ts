@@ -1,17 +1,18 @@
 import { NgStyle } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { BoxBorder, ColorObject } from '../../app.types';
+import { BoxBorder, ColorObject, Coordinates } from '../../app.types';
+import { PanelColorComponent } from '../panel-color/panel-color.component';
 
 @Component({
   selector: 'app-day',
   standalone: true,
-  imports: [NgStyle],
+  imports: [NgStyle, PanelColorComponent],
   templateUrl: './day.component.html',
   styleUrl: './day.component.css'
 })
 export class DayComponent implements OnInit {
 
-  @Input() color: ColorObject = { color: "white", value: 0, label: "no alcohol"};
+  @Input() color: ColorObject = { color: "white", value: 0, label: "no alcohol" };
 
   @Input() selectableColors: ColorObject[] = []
 
@@ -19,19 +20,12 @@ export class DayComponent implements OnInit {
 
   @Output() selectedColorEvent = new EventEmitter<ColorObject>();
 
-  count: number = 0;
+  showPanel: boolean = false;
 
-  ngOnInit(): void {
-    this.count = this.color?.value ?? 0;
-  }
+  x: number = 0;
+  y: number = 0;
 
-  selectColor() {
-    const max = this.selectableColors.length - 1;
-
-    this.count = this.count < max ? this.count + 1 : 0;
-    this.color = this.selectableColors[this.count];
-    this.selectedColorEvent.emit(this.color);
-  }
+  ngOnInit(): void {}
 
   computeBorderStyle(): string {
     let style = this.color?.color ? `background-color:${this.color.color};` : "";
@@ -40,5 +34,35 @@ export class DayComponent implements OnInit {
     });
 
     return style;
+  }
+
+  saveColor(color: ColorObject) {
+    this.selectedColorEvent.emit(color);
+  }
+
+  openModal(event: MouseEvent) {
+    this.showPanel = !this.showPanel;
+    this.x = event.x
+    this.y = event.y
+    if (this.showPanel) {
+      this.bloquerDefilement();
+    } else {
+      this.allowScroll();
+    }
+  }
+
+  getCoordinates(): Coordinates {
+    return {
+      x: this.x,
+      y: this.y,
+    }
+  }
+
+  bloquerDefilement() {
+    document.body.style.overflowY = 'hidden';
+  }
+
+  allowScroll() {
+    document.body.style.overflowY = 'auto';
   }
 }

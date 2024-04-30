@@ -1,4 +1,5 @@
-<div class="day"
-  [style]="computeBorderStyle()"
-	(click)="selectColor()">
+<div class="day" [style]="computeBorderStyle()" (click)="openModal($event)">
+  @if(showPanel) {
+  <app-panel-color [selectableColors]="selectableColors" (selectedColorEvent)="saveColor($event)" [coordinates]="getCoordinates()"></app-panel-color>
+  }
 </div>

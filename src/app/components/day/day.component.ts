@@ -44,6 +44,11 @@ export class DayComponent implements OnInit {
     this.showPanel = !this.showPanel;
     this.x = event.x
     this.y = event.y
+    if (this.showPanel) {
+      this.bloquerDefilement();
+    } else {
+      this.allowScroll();
+    }
   }
 
   getCoordinates(): Coordinates {
@@ -51,5 +56,13 @@ export class DayComponent implements OnInit {
       x: this.x,
       y: this.y,
     }
+  }
+
+  bloquerDefilement() {
+    document.body.style.overflowY = 'hidden';
+  }
+
+  allowScroll() {
+    document.body.style.overflowY = 'auto';
   }
 }

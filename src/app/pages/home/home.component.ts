@@ -4,6 +4,7 @@ import { AppService } from '../../app.service';
 import { DayComponent } from '../../components/day/day.component';
 import { NgStyle } from '@angular/common';
 import { BoxBorder, ColorObject } from '../../app.types';
+import { DateUtils } from '../../utils/date.utils';
 
 @Component({
   selector: 'app-home',
@@ -16,8 +17,10 @@ export class HomeComponent {
 
   calendar: (string | null)[][] = [];
 
+  year: number = new Date().getFullYear();
+
   daysNumber = Array(31);
-  monthsLetter: string[] = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'];
+  monthsLetter: string[] = DateUtils.getMonthLetters();
 
   appService = inject(AppService)
 
@@ -25,15 +28,7 @@ export class HomeComponent {
 
   ngOnInit() {
 
-    const year = this.appService.year;
-
-    for (let indexMonth = 0; indexMonth < year.length; indexMonth++) {
-      for (let indexDay = 0; indexDay < year[indexMonth].length; indexDay++) {
-        if (!this.calendar[indexMonth]) {
-          this.calendar[indexMonth] = new Array(year[indexMonth].length);
-        }
-      }
-    }
+    this.calendar = DateUtils.getCalendar(this.year);
 
     this.selectableColors = this.appService.quantites;
   }

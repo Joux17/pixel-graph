@@ -1,24 +1,10 @@
 import { Injectable } from "@angular/core";
 import { ColorObject } from "./app.types";
 
-let janvier = new Array(31);
-let fevrier = new Array(29); // TODO à variabiliser en fn de l'année consultée
-let mars = new Array(31);
-let avril = new Array(30);
-let mai = new Array(31);
-let juin = new Array(30);
-let juillet = new Array(31);
-let aout = new Array(31);
-let septembre = new Array(30);
-let octobre = new Array(31);
-let novembre = new Array(30);
-let decembre = new Array(31);
-
 @Injectable({
   providedIn: 'root',
 })
 export class AppService {
-  year: (string | null)[][] = [janvier, fevrier, mars, avril, mai, juin, juillet, aout, septembre, octobre, novembre, decembre]
 
   quantites: ColorObject[] = [
     { color: 'white', label: 'no alcohol', value: 0 },
@@ -56,7 +42,4 @@ export class AppService {
 
   }
 
-  estUneAnneeBissextile(year: number) {
-    return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
-  }
 }

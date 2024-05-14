@@ -3,9 +3,10 @@ import { RouterOutlet } from '@angular/router';
 import { AppService } from '../../app.service';
 import { DayComponent } from '../../components/day/day.component';
 import { NgStyle } from '@angular/common';
-import { BoxBorder, ColorObject } from '../../app.types';
+import { BoxBorder, ColorObject, DailyValue } from '../../app.types';
 import { DateUtils } from '../../utils/date.utils';
 
+const MAX_DAYS_IN_MONTH = 31;
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -17,9 +18,11 @@ export class HomeComponent {
 
   calendar: (string | null)[][] = [];
 
-  year: number = new Date().getFullYear();
+  actualYear: number = new Date().getFullYear();
+  selectableYears: number[] = [this.actualYear]
 
-  daysNumber = Array(31);
+  maxDaysInMonth = Array(MAX_DAYS_IN_MONTH);
+
   monthsLetter: string[] = DateUtils.getMonthLetters();
 
   appService = inject(AppService)
@@ -28,15 +31,15 @@ export class HomeComponent {
 
   ngOnInit() {
 
-    this.calendar = DateUtils.getCalendar(this.year);
+    this.calendar = DateUtils.getCalendar(this.actualYear);
 
     this.selectableColors = this.appService.quantites;
   }
 
-  extractConsoForDay(indexMonth: number, indexDay: number) {
-    const conso: { [key: string]: any } = this.appService.getConso();
+  extractConsoForDay(indexMonth: number, indexDay: number): ColorObject {
+    const conso: DailyValue = this.appService.getConso();
 
-    const data = conso[`${indexMonth};${indexDay}`] ?? 0
+    const data: number = conso[`${indexMonth};${indexDay}`] ?? 0
 
     return this.mapValueToObject(data);
   }

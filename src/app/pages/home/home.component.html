@@ -1,7 +1,9 @@
 <div class="home-container">
 	<div class="head">
 		<select class="year" name="year" id="year-select">
-			<option [value]="year">{{year}}</option>
+      @for(year of selectableYears; track year) {
+        <option [value]="year">{{year}}</option>
+      }
 		</select>
 	</div>
 	<div class="content">
@@ -18,7 +20,7 @@
 		</div>
 		<div class="calendar-container">
 			<div class="days">
-				@for(jour of daysNumber; track $index) {
+				@for(dayNumber of maxDaysInMonth; track $index) {
 				<div class="dayNumber">{{ $index + 1 }}</div>
 				}
 			</div>

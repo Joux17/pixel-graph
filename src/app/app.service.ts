@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { ColorObject } from "./app.types";
+import { ColorObject, DailyValue } from "./app.types";
 
 @Injectable({
   providedIn: 'root',
@@ -31,7 +31,7 @@ export class AppService {
 
   }
 
-  getConso(): { [key: string]: any } {
+  getConso(): DailyValue {
     const conso: string | null = localStorage.getItem('conso') ?? null;
 
     if (conso === null) {

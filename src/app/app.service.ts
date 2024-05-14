@@ -15,7 +15,7 @@ export class AppService {
     { color: 'black', label: 'blackout', value: 5 },
   ];
 
-  persistDay(indiceMois: number, indiceJour: number, value: number): void {
+  persistDay(year: number, indiceMois: number, indiceJour: number, value: number): void {
     const consoAsString: string | null = localStorage.getItem('conso');
 
     let conso: { [key: string]: number } = {};

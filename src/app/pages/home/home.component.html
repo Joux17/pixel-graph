@@ -1,6 +1,6 @@
 <div class="home-container">
 	<div class="head">
-		<select class="year" name="year" id="year-select">
+		<select class="year" name="year" id="year-select" [(ngModel)]="selectedYear">
       @for(year of selectableYears; track year) {
         <option [value]="year">{{year}}</option>
       }

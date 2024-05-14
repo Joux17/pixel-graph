@@ -5,12 +5,13 @@ import { DayComponent } from '../../components/day/day.component';
 import { NgStyle } from '@angular/common';
 import { BoxBorder, ColorObject, DailyValue } from '../../app.types';
 import { DateUtils } from '../../utils/date.utils';
+import { FormsModule } from '@angular/forms';
 
 const MAX_DAYS_IN_MONTH = 31;
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterOutlet, DayComponent, NgStyle],
+  imports: [RouterOutlet, DayComponent, NgStyle, FormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -19,7 +20,8 @@ export class HomeComponent {
   calendar: (string | null)[][] = [];
 
   actualYear: number = new Date().getFullYear();
-  selectableYears: number[] = [this.actualYear]
+  selectableYears: number[] = [this.actualYear, 2023, 2022]
+  selectedYear: number = this.actualYear;
 
   maxDaysInMonth = Array(MAX_DAYS_IN_MONTH);
 
@@ -31,7 +33,7 @@ export class HomeComponent {
 
   ngOnInit() {
 
-    this.calendar = DateUtils.getCalendar(this.actualYear);
+    this.calendar = DateUtils.getCalendar(this.selectedYear);
 
     this.selectableColors = this.appService.quantites;
   }
@@ -54,7 +56,7 @@ export class HomeComponent {
 
   save(indexMois: number, indexDay: number, color: ColorObject) {
     this.calendar[indexMois][indexDay] = color?.color;
-    this.appService.persistDay(indexMois, indexDay, color.value);
+    this.appService.persistDay(this.selectedYear, indexMois, indexDay, color.value);
   }
 
   getBorders(indexMois: number, indexDay: number): BoxBorder[] {

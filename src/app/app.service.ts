@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { ColorObject, DailyValue } from "./app.types";
+import { ColorObject, DailyValue, YearlyData } from "./app.types";
 
 @Injectable({
   providedIn: 'root',
@@ -17,17 +17,33 @@ export class AppService {
 
   persistDay(year: number, indiceMois: number, indiceJour: number, value: number): void {
     const consoAsString: string | null = localStorage.getItem('conso');
+    const consoYearAsString: string | null = localStorage.getItem('consoYear');
 
-    let conso: { [key: string]: number } = {};
+    let conso: DailyValue = {};
+    let consoYear: YearlyData = {};
 
     if (consoAsString) {
-      conso = JSON.parse(consoAsString);
+      conso = JSON.parse(consoAsString) || {};
+    }
+
+    if (consoYearAsString) {
+      consoYear = JSON.parse(consoYearAsString);
+
     }
 
     // La clé sous laquelle est stockée la valeur de conso est de la forme 0;0
     conso[`${indiceMois};${indiceJour}`] = value;
 
+    // TODO TFX : pas très fan de cette partie là
+    if(!consoYear[year]){
+      consoYear[year] = {};
+    }
+
+    consoYear[year][`${indiceMois};${indiceJour}`] = value;
+    //
+
     localStorage.setItem('conso', JSON.stringify(conso));
+    localStorage.setItem('consoYear', JSON.stringify(consoYear));
 
   }
 

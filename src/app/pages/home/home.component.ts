@@ -6,6 +6,7 @@ import { NgStyle } from '@angular/common';
 import { BoxBorder, ColorObject, DailyValue } from '../../app.types';
 import { DateUtils } from '../../utils/date.utils';
 import { FormsModule } from '@angular/forms';
+import { Firestore, collection, getDocs } from '@angular/fire/firestore';
 
 const MAX_DAYS_IN_MONTH = 31;
 @Component({
@@ -16,6 +17,8 @@ const MAX_DAYS_IN_MONTH = 31;
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+
+  firestore = inject(Firestore);
 
   calendar: (string | null)[][] = [];
 
@@ -31,11 +34,16 @@ export class HomeComponent {
 
   selectableColors: ColorObject[] = []
 
-  ngOnInit() {
+  async ngOnInit() {
 
     this.calendar = DateUtils.getCalendar(this.selectedYear);
 
     this.selectableColors = this.appService.quantites;
+
+    (await getDocs(collection(this.firestore, "metrics"))).docs.map(doc => {
+      console.log(doc.data());
+    });
+
   }
 
   extractConsoForDay(indexMonth: number, indexDay: number): ColorObject {

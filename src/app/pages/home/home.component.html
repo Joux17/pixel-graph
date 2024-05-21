@@ -1,29 +1,51 @@
 <div class="home-container">
-	<div class="legend-container">
-		<h1>Légende</h1>
-		<div>
-			@for(quantite of selectableColors; track quantite){
-			<div class="legend">
-				<p class="square" [ngStyle]="{ 'background-color': quantite.color }"></p>
-				<img [src]="imagePath(quantite.value)" />
+	<div class="head">
+		<select
+			class="year"
+			name="year"
+			id="year-select"
+			[(ngModel)]="selectedYear"
+			(change)="onYearChange()"
+		>
+			@for(year of selectableYears; track year) {
+			<option [value]="year">{{ year }}</option>
+			}
+		</select>
+	</div>
+	<div class="content">
+		<div class="legend-container">
+			<h1>Légende</h1>
+			<div>
+				@for(quantite of selectableColors; track quantite){
+				<div class="legend">
+					<p
+						class="square"
+						[ngStyle]="{ 'background-color': quantite.color }"
+					></p>
+					<img [src]="imagePath(quantite.value)" />
+				</div>
+				}
+			</div>
+		</div>
+		<div class="calendar-container">
+			<div class="days">
+				@for(dayNumber of maxDaysInMonth; track $index) {
+				<div class="dayNumber">{{ $index + 1 }}</div>
+				}
+			</div>
+			@for (month of calendar; let indexMois = $index; track indexMois) {
+			<div class="month">
+				<div class="month-text">{{ monthsLetter[indexMois] }}</div>
+				@for (day of month; let indexDay = $index; track indexDay) {
+				<app-day
+					[color]="extractConsoForDay(indexMois, indexDay)"
+					[selectableColors]="selectableColors"
+					[borders]="getBorders(indexMois, indexDay)"
+					(selectedColorEvent)="save(indexMois, indexDay, $event)"
+				/>
+				}
 			</div>
 			}
 		</div>
-	</div>
-	<div class="calendar-container">
-		<div class="days">
-			@for(jour of daysNumber; track $index) {
-			<div class="dayNumber">{{ $index + 1 }}</div>
-			}
-		</div>
-		@for (month of calendar; let indexMois = $index; track indexMois) {
-		<div class="month">
-			<div class="month-text">{{ monthsLetter[indexMois] }}</div>
-			@for (day of month; let indexDay = $index; track indexDay) {
-			<app-day [color]="extractConsoForDay(indexMois,indexDay)" [selectableColors]="selectableColors"
-				[borders]="getBorders(indexMois, indexDay)" (selectedColorEvent)="save(indexMois, indexDay, $event)" />
-			}
-		</div>
-		}
 	</div>
 </div>

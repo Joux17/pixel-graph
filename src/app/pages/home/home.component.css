@@ -3,67 +3,80 @@
   justify-content: center;
   flex-direction: column;
 
-  @media (width > 480px){
-  flex-direction: row-reverse;
-
-  }
-
-  .calendar-container {
-    display: flex;
-    padding: 0 20px;
-  }
-
-  .days {
-    padding-top: var(--box-size);
-  }
-
-  .dayNumber {
-    width: var(--box-size);
-    height: var(--box-size);
-    border: 1px white solid;
-    margin: -1px -1px 0 0;
+  .head {
     display: flex;
     justify-content: center;
+
+    .year {
+      margin: 15px 0;
+    }
   }
 
-  .month {
+  .content {
     display: flex;
-    flex-direction: column;
-    width: var(--box-size);
+    flex-direction: row;
 
-    .month-text {
+    .calendar-container {
       display: flex;
+      padding: 0 20px;
+    }
+
+    .days {
+      padding-top: var(--box-size);
+    }
+
+    .dayNumber {
       width: var(--box-size);
-      justify-content: center;
-
-      > p {
-        width: 5px;
-        margin: auto;
-      }
-    }
-  }
-
-  .legend-container {
-    @media (width < 480px) {
-      display: none;
-    }
-    flex-direction: column;
-    padding-left: 25px;
-    .legend {
+      height: var(--box-size);
+      border: 1px white solid;
+      margin: -1px -1px 0 0;
       display: flex;
-      align-items: center;
+      justify-content: center;
+    }
 
-      .square {
-        width: 20px;
-        height: 20px;
-        border: 1px black solid;
-        margin-right: 10px;
+    .month {
+      display: flex;
+      flex-direction: column;
+      width: var(--box-size);
+
+      .month-text {
+        display: flex;
+        width: var(--box-size);
+        justify-content: center;
+
+        >p {
+          width: 5px;
+          margin: auto;
+        }
+      }
+    }
+
+    .legend-container {
+      @media (width < 480px) {
+        display: none;
       }
 
-      img {
-        height: 30px;
+      flex-direction: column;
+      padding-left: 25px;
+
+      .legend {
+        display: flex;
+        align-items: center;
+
+        .square {
+          width: 20px;
+          height: 20px;
+          border: 1px black solid;
+          margin-right: 10px;
+        }
+
+        img {
+          height: 30px;
+        }
       }
     }
   }
+
+
 
 }

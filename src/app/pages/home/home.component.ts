@@ -3,12 +3,15 @@ import { RouterOutlet } from '@angular/router';
 import { AppService } from '../../app.service';
 import { DayComponent } from '../../components/day/day.component';
 import { NgStyle } from '@angular/common';
-import { BoxBorder, ColorObject } from '../../app.types';
+import { BoxBorder, ColorObject, DailyValue } from '../../app.types';
+import { DateUtils } from '../../utils/date.utils';
+import { FormsModule } from '@angular/forms';
 
+const MAX_DAYS_IN_MONTH = 31;
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterOutlet, DayComponent, NgStyle],
+  imports: [RouterOutlet, DayComponent, NgStyle, FormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -16,8 +19,13 @@ export class HomeComponent {
 
   calendar: (string | null)[][] = [];
 
-  daysNumber = Array(31);
-  monthsLetter: string[] = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'];
+  actualYear: number = new Date().getFullYear();
+  selectableYears: number[] = [this.actualYear, 2023, 2022]
+  selectedYear: number = this.actualYear;
+
+  maxDaysInMonth = Array(MAX_DAYS_IN_MONTH);
+
+  monthsLetter: string[] = DateUtils.getMonthLetters();
 
   appService = inject(AppService)
 
@@ -25,23 +33,15 @@ export class HomeComponent {
 
   ngOnInit() {
 
-    const year = this.appService.year;
-
-    for (let indexMonth = 0; indexMonth < year.length; indexMonth++) {
-      for (let indexDay = 0; indexDay < year[indexMonth].length; indexDay++) {
-        if (!this.calendar[indexMonth]) {
-          this.calendar[indexMonth] = new Array(year[indexMonth].length);
-        }
-      }
-    }
+    this.calendar = DateUtils.getCalendar(this.selectedYear);
 
     this.selectableColors = this.appService.quantites;
   }
 
-  extractConsoForDay(indexMonth: number, indexDay: number) {
-    const conso: { [key: string]: any } = this.appService.getConso();
+  extractConsoForDay(indexMonth: number, indexDay: number): ColorObject {
+    const conso: DailyValue = this.appService.getConsoYear(this.selectedYear);
 
-    const data = conso[`${indexMonth};${indexDay}`] ?? 0
+    const data: number = conso[`${indexMonth};${indexDay}`] ?? 0
 
     return this.mapValueToObject(data);
   }
@@ -54,9 +54,13 @@ export class HomeComponent {
     return this.selectableColors.find(c => c.color === color)!!;
   }
 
+  onYearChange() {
+    this.calendar = DateUtils.getCalendar(this.selectedYear);
+  }
+
   save(indexMois: number, indexDay: number, color: ColorObject) {
     this.calendar[indexMois][indexDay] = color?.color;
-    this.appService.persistDay(indexMois, indexDay, color.value);
+    this.appService.persistDay(this.selectedYear, indexMois, indexDay, color.value);
   }
 
   getBorders(indexMois: number, indexDay: number): BoxBorder[] {

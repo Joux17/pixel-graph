@@ -1,9 +1,15 @@
 <div class="home-container">
 	<div class="head">
-		<select class="year" name="year" id="year-select" [(ngModel)]="selectedYear">
-      @for(year of selectableYears; track year) {
-        <option [value]="year">{{year}}</option>
-      }
+		<select
+			class="year"
+			name="year"
+			id="year-select"
+			[(ngModel)]="selectedYear"
+			(change)="onYearChange()"
+		>
+			@for(year of selectableYears; track year) {
+			<option [value]="year">{{ year }}</option>
+			}
 		</select>
 	</div>
 	<div class="content">
@@ -12,7 +18,10 @@
 			<div>
 				@for(quantite of selectableColors; track quantite){
 				<div class="legend">
-					<p class="square" [ngStyle]="{ 'background-color': quantite.color }"></p>
+					<p
+						class="square"
+						[ngStyle]="{ 'background-color': quantite.color }"
+					></p>
 					<img [src]="imagePath(quantite.value)" />
 				</div>
 				}
@@ -28,9 +37,12 @@
 			<div class="month">
 				<div class="month-text">{{ monthsLetter[indexMois] }}</div>
 				@for (day of month; let indexDay = $index; track indexDay) {
-				<app-day [color]="extractConsoForDay(indexMois,indexDay)" [selectableColors]="selectableColors"
+				<app-day
+					[color]="extractConsoForDay(indexMois, indexDay)"
+					[selectableColors]="selectableColors"
 					[borders]="getBorders(indexMois, indexDay)"
-					(selectedColorEvent)="save(indexMois, indexDay, $event)" />
+					(selectedColorEvent)="save(indexMois, indexDay, $event)"
+				/>
 				}
 			</div>
 			}

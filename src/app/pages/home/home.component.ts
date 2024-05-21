@@ -39,7 +39,7 @@ export class HomeComponent {
   }
 
   extractConsoForDay(indexMonth: number, indexDay: number): ColorObject {
-    const conso: DailyValue = this.appService.getConso();
+    const conso: DailyValue = this.appService.getConsoYear(this.selectedYear);
 
     const data: number = conso[`${indexMonth};${indexDay}`] ?? 0
 
@@ -52,6 +52,10 @@ export class HomeComponent {
 
   mapColorToObject(color: string): ColorObject {
     return this.selectableColors.find(c => c.color === color)!!;
+  }
+
+  onYearChange() {
+    this.calendar = DateUtils.getCalendar(this.selectedYear);
   }
 
   save(indexMois: number, indexDay: number, color: ColorObject) {

@@ -35,7 +35,7 @@ export class AppService {
     conso[`${indiceMois};${indiceJour}`] = value;
 
     // TODO TFX : pas très fan de cette partie là
-    if(!consoYear[year]){
+    if (!consoYear[year]) {
       consoYear[year] = {};
     }
 
@@ -54,6 +54,18 @@ export class AppService {
       return {};
     } else {
       return JSON.parse(conso);
+    }
+
+  }
+
+  getConsoYear(year: number): DailyValue {
+    const conso: string | null = localStorage.getItem('consoYear') ?? null;
+
+    if (conso === null) {
+      return {};
+    } else {
+      const data = JSON.parse(conso);
+      return data[year] ?? {};
     }
 
   }

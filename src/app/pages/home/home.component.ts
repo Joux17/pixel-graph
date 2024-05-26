@@ -3,10 +3,10 @@ import { RouterOutlet } from '@angular/router';
 import { AppService } from '../../app.service';
 import { DayComponent } from '../../components/day/day.component';
 import { NgStyle } from '@angular/common';
-import { BoxBorder, ColorObject, DailyValue } from '../../app.types';
+import { BoxBorder, ColorObject, DailyValue, Metrics } from '../../app.types';
 import { DateUtils } from '../../utils/date.utils';
 import { FormsModule } from '@angular/forms';
-import { Firestore, collection, getDocs } from '@angular/fire/firestore';
+import { FirebaseService } from '../../utils/firebase/firebase.utils';
 
 const MAX_DAYS_IN_MONTH = 31;
 @Component({
@@ -18,7 +18,9 @@ const MAX_DAYS_IN_MONTH = 31;
 })
 export class HomeComponent {
 
-  firestore = inject(Firestore);
+  dbService = inject(FirebaseService);
+
+  metrics: Metrics[] = [];
 
   calendar: (string | null)[][] = [];
 
@@ -40,8 +42,9 @@ export class HomeComponent {
 
     this.selectableColors = this.appService.quantites;
 
-    (await getDocs(collection(this.firestore, "metrics"))).docs.map(doc => {
-      console.log(doc.data());
+    this.dbService.getMetrics().subscribe((response: Metrics[]) => {
+      console.log("from service : ", response);
+      this.metrics = response
     });
 
   }

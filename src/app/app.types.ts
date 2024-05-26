@@ -24,3 +24,15 @@ export interface DailyValue {
 export interface YearlyData {
   [year: string]: DailyValue
 }
+
+export interface DailyMetric {
+  x: number,
+  y: number,
+  value: number
+}
+
+export interface Metrics {
+  year: number,
+  userId: string,
+  dailyMetrics: DailyMetric[]
+}

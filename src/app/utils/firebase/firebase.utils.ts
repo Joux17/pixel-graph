@@ -5,37 +5,40 @@ import { Metrics } from '../../app.types';
 import { DocumentData, getDoc } from 'firebase/firestore';
 
 @Injectable({
-    providedIn: 'root',
+  providedIn: 'root',
 })
 export class FirebaseService {
-    firestore = inject(Firestore);
-    metricsCollection = collection(this.firestore, "metrics")
+  firestore = inject(Firestore);
+  metricsCollection = collection(this.firestore, "metrics")
 
-    getMetrics = (): Observable<Metrics[]> => {
-        return collectionData(this.metricsCollection) as Observable<Metrics[]>;
+  getMetrics = (): Observable<Metrics[]> => {
+    return collectionData(this.metricsCollection) as Observable<Metrics[]>;
+  }
+
+  async getUserMetricsByYear(userId: string, year: number): Promise<{ id: string, metrics: Metrics } | undefined> {
+    const q = query(this.metricsCollection, where("userId", "==", userId), where("year", "==", year));
+
+    const querySnapshot = await getDocs(q);
+
+    const doc = querySnapshot.docs[0];
+
+    if (doc) {
+      console.log(doc.id, " => ", doc.data());
+
+      return { id: doc.id, metrics: doc.data() as Metrics };
     }
 
-    getMetrics2(userId: string, year: number): Observable<Metrics> {
-      const q = query(this.metricsCollection, where("userId", "==", userId), where("year", "==", year));
-      return collectionData(q).pipe(
-        first() // ça marche pas ça, j'ai un tableau
-      ) as Observable<Metrics>
+    return undefined;
+  }
 
-      //return ( getDocs(q)).docs[0]
-      // querySnapshot.forEach((doc) => {
-      //   // doc.data() is never undefined for query doc snapshots
-      //   console.log(doc.id, " => ", doc.data());
-      // });
-    }
+  addMetrics(metricsToCreate: Metrics): Observable<string> {
+    const promise = addDoc(this.metricsCollection, metricsToCreate).then(response => response.id)
 
-    addMetrics(metricsToCreate: Metrics): Observable<string> {
-      const promise = addDoc(this.metricsCollection, metricsToCreate).then(response => response.id)
+    return from(promise)
+  }
 
-      return from(promise)
-    }
-
-    // updateMetrics(): any {
-    //   updateDoc(this.metricsCollection,)
-    //     return {}
-    // }
+  // updateMetrics(): any {
+  //   updateDoc(this.metricsCollection,)
+  //     return {}
+  // }
 }

@@ -36,18 +36,22 @@ export class HomeComponent {
 
   selectableColors: ColorObject[] = []
 
+  userId: string | undefined;
+
+  userDocumentId: string | undefined;
+
   async ngOnInit() {
 
     this.calendar = DateUtils.getCalendar(this.selectedYear);
 
     this.selectableColors = this.appService.quantites;
 
-    // this.dbService.getMetrics().subscribe((response: Metrics[]) => {
-    //   console.log("from service : ", response);
-    //   this.metrics = response
-    // });
 
-    this.dbService.getMetrics2("joux", 2024).subscribe(response => console.log(response)); // TODO : ici je veux récupérer l'id du document ainsi que les donnees associees
+    this.dbService.getUserMetricsByYear("joux", this.selectedYear)
+      .then(response => {
+        console.log(response)
+        this.userDocumentId = response?.id;
+      });
 
   }
 

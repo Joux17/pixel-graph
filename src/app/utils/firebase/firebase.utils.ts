@@ -1,8 +1,7 @@
-import { Firestore, QuerySnapshot, addDoc, and, collection, collectionData, getDocs, query, updateDoc, where } from '@angular/fire/firestore';
-import { Observable, first, from, map } from "rxjs";
+import { Firestore, addDoc, collection, collectionData, doc, getDocs, query, setDoc, where } from '@angular/fire/firestore';
+import { Observable, from } from "rxjs";
 import { Injectable, inject } from "@angular/core";
 import { Metrics } from '../../app.types';
-import { DocumentData, getDoc } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -35,6 +34,14 @@ export class FirebaseService {
     const promise = addDoc(this.metricsCollection, metricsToCreate).then(response => response.id)
 
     return from(promise)
+  }
+
+  async createDoc(userId: string, year: number): Promise<void> {
+    return await setDoc(doc(this.firestore, "metrics", `${userId}-${year}`), {
+      userId: userId,
+      year: year,
+      dailyMetrics: []
+    })
   }
 
   // updateMetrics(): any {

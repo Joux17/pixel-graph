@@ -53,6 +53,9 @@ export class HomeComponent {
         this.userDocumentId = response?.id;
       });
 
+    // this.dbService.createDoc("test", 2024).then(()=> console.log("DONE"));
+
+
   }
 
   extractConsoForDay(indexMonth: number, indexDay: number): ColorObject {

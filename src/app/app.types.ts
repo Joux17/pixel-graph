@@ -26,8 +26,8 @@ export interface YearlyData {
 }
 
 export interface DailyMetric {
-  x: number,
-  y: number,
+  day: number,
+  month: number,
   value: number
 }
 

@@ -1,10 +1,13 @@
-import { Injectable } from "@angular/core";
-import { ColorObject, DailyValue, YearlyData } from "./app.types";
+import { Injectable, inject } from "@angular/core";
+import { ColorObject, DailyValue, Metrics, YearlyData } from "./app.types";
+import { FirebaseService } from "./utils/firebase/firebase.utils";
 
 @Injectable({
   providedIn: 'root',
 })
 export class AppService {
+
+  firebaseService = inject(FirebaseService);
 
   quantites: ColorObject[] = [
     { color: 'white', label: 'no alcohol', value: 0 },
@@ -44,6 +47,18 @@ export class AppService {
 
     localStorage.setItem('conso', JSON.stringify(conso));
     localStorage.setItem('consoYear', JSON.stringify(consoYear));
+
+    const metricsToSave: Metrics = {
+      year: 2024,
+      userId: "joux",
+      dailyMetrics: [
+        { day: indiceJour, month: indiceMois, value: value }
+      ]
+    };
+
+    this.firebaseService.updateMetrics(metricsToSave).subscribe((response) => {
+      console.log(response);
+    });
 
   }
 

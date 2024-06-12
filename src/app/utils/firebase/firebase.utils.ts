@@ -1,7 +1,7 @@
-import { Firestore, addDoc, collection, collectionData, doc, getDocs, query, setDoc, where } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, collectionData, doc, getDoc, getDocs, query, setDoc, updateDoc, where } from '@angular/fire/firestore';
 import { Observable, from } from "rxjs";
 import { Injectable, inject } from "@angular/core";
-import { Metrics } from '../../app.types';
+import { DailyMetric, Metrics } from '../../app.types';
 
 @Injectable({
   providedIn: 'root',
@@ -44,8 +44,17 @@ export class FirebaseService {
     })
   }
 
-  // updateMetrics(): any {
-  //   updateDoc(this.metricsCollection,)
-  //     return {}
-  // }
+  updateMetrics(metricsToUpdate: Metrics): Observable<string> {
+    const snapshot = getDoc(doc(this.firestore, "metrics", "joux-2024"))
+    let oldMetrics = [];
+
+    snapshot.then(document => {
+      oldMetrics = document.data()?.['dailyMetrics'] as DailyMetric[];
+      const update = [...oldMetrics, ...metricsToUpdate.dailyMetrics]
+      setDoc(doc(this.firestore, "metrics", "joux-2024"), {dailyMetrics : update}, {merge: true})
+    })
+
+    // setDoc(doc(this.firestore, "metrics", "joux-2024"), metricsToUpdate)
+    return from(Promise.resolve("done"))
+  }
 }
